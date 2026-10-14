@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { CheckCircle2, Clock3, Dumbbell, ImageOff, Info, RotateCcw } from "lucide-react";
+import { CheckCircle2, Dumbbell, ImageOff, Info, Play, RotateCcw } from "lucide-react";
+import { ExerciseGuideDialog } from "./ExerciseGuideDialog";
 import {
   PERSONAL_WORKOUT_DISCLAIMER,
   personalComfortWorkouts,
@@ -39,6 +40,7 @@ function ExerciseAnimation({ exercise }: { exercise: PersonalExercise }) {
 /** Área independente: não altera fichas ou registros do professor no Supabase. */
 export function PersonalComfortPlan({ accountId }: Props) {
   const [selectedCode, setSelectedCode] = useState<PersonalWorkoutCode>("A");
+  const [selectedExercise, setSelectedExercise] = useState<PersonalExercise | null>(null);
   const [completed, setCompleted] = useState<Record<string, boolean>>({});
   const storageKey = useMemo(() => `ozorio-fit:treino-confortavel:v1:${accountId}:${currentLocalDay()}`, [accountId]);
 
@@ -84,7 +86,7 @@ export function PersonalComfortPlan({ accountId }: Props) {
       {personalComfortWorkouts.map((workout) => <button key={workout.code} type="button" role="tab"
         aria-selected={selectedCode === workout.code}
         className={selectedCode === workout.code ? "is-selected" : ""}
-        onClick={() => setSelectedCode(workout.code)}>Treino {workout.code}</button>)}
+        onClick={() => { setSelectedCode(workout.code); setSelectedExercise(null); }}>Treino {workout.code}</button>)}
     </div>
 
     <div className="comfort-workout-meta">
@@ -97,23 +99,48 @@ export function PersonalComfortPlan({ accountId }: Props) {
 
     <div className="comfort-exercise-list">
       {selected.exercises.map((exercise, index) => <article key={exercise.id} className={`comfort-exercise ${completed[exercise.id] ? "is-done" : ""}`}>
-        <div className="comfort-exercise-visual">
+        <button
+          type="button"
+          className="comfort-exercise-visual"
+          aria-label={`Ver GIF e aprender a fazer ${exercise.name}`}
+          aria-haspopup="dialog"
+          onClick={() => setSelectedExercise(exercise)}
+        >
           <ExerciseAnimation exercise={exercise}/>
           <span className="comfort-exercise-index">{index + 1}</span>
-        </div>
+          <span className="comfort-play" aria-hidden="true"><Play size={13} fill="currentColor" /></span>
+        </button>
         <div className="comfort-exercise-info">
-          <p className="comfort-muscle">{exercise.muscle}</p>
           <h4>{exercise.name}</h4>
           <p className="comfort-equipment">{exercise.equipment}</p>
-          <div className="comfort-stats"><span><Dumbbell size={15} aria-hidden="true"/> {exercise.prescription}</span>{exercise.restSeconds > 0 && <span><Clock3 size={15} aria-hidden="true"/> {exercise.restSeconds} s descanso</span>}</div>
-          <p className="comfort-exercise-tip">{exercise.tip}</p>
-          {exercise.replaces && <p className="comfort-replacement">Substitui: {exercise.replaces}</p>}
+          <p className="comfort-muscle">{exercise.muscle}</p>
+          <div className="comfort-compact-facts">
+            <strong>{exercise.prescription}</strong>
+            <span>{exercise.restSeconds > 0 ? `Desc. ${exercise.restSeconds}s` : "Aeróbico"}</span>
+            <span>Carga: ajustar</span>
+          </div>
           <button type="button" className={`comfort-done-button ${completed[exercise.id] ? "is-done" : ""}`} onClick={() => toggleExercise(exercise.id)}>
-            <CheckCircle2 size={17} aria-hidden="true"/>{completed[exercise.id] ? "Feito hoje · desfazer" : "Marcar como feito"}
+            <CheckCircle2 size={15} aria-hidden="true"/>{completed[exercise.id] ? "Feito · desfazer" : "Marcar como feito"}
           </button>
         </div>
       </article>)}
     </div>
+    {selectedExercise && (
+      <ExerciseGuideDialog
+        title={selectedExercise.name}
+        subtitle={`${selectedExercise.equipment} · ${selectedExercise.muscle}`}
+        media={<ExerciseAnimation exercise={selectedExercise} />}
+        stats={[
+          { label: "Séries / repetições", value: selectedExercise.prescription },
+          { label: "Descanso", value: selectedExercise.restSeconds > 0 ? `${selectedExercise.restSeconds}s` : "—" },
+          { label: "Carga", value: "Ajustar com instrutor" },
+          { label: "Grupo muscular", value: selectedExercise.muscle },
+        ]}
+        instruction={`${selectedExercise.tip}${selectedExercise.replaces ? ` Substitui: ${selectedExercise.replaces}.` : ""}`}
+        credit="GIF: ExerciseGymGifsDB · reprodução animada"
+        onClose={() => setSelectedExercise(null)}
+      />
+    )}
     <button type="button" className="comfort-reset" onClick={resetCurrentWorkout}><RotateCcw size={16} aria-hidden="true"/> Reiniciar marcações deste treino</button>
     <p className="comfort-credit">GIFs demonstrativos externos: ExerciseGymGifsDB (JahelCuadrado, v1.1.0). Exigem conexão com a internet. O uso pessoal não autoriza automaticamente redistribuição das mídias.</p>
   </section>;
