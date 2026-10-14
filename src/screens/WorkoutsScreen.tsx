@@ -1,12 +1,12 @@
-import { CheckCircle2, Clock3, Dumbbell, Play, RefreshCw, Weight, X } from "lucide-react";
+import { CheckCircle2, Clock3, Dumbbell, Play, RefreshCw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppShell } from "../components/AppShell";
 import { BrandLogo } from "../components/BrandLogo";
-import { ExerciseDemo } from "../components/ExerciseDemo";
-import { ExerciseMedia } from "../components/ExerciseMedia";
+import { ExerciseGuideDialog } from "../components/ExerciseGuideDialog";
+import { WorkoutDemonstration } from "../components/WorkoutDemonstration";
+import { curatedWorkoutGif } from "../data/exerciseDemonstrations";
 import { PersonalComfortPlan } from "../components/PersonalComfortPlan";
-import { MuscleBodyMap } from "../components/MuscleBodyMap";
 import { listOwnWorkoutPrograms, type WorkoutExercise, type WorkoutProgram } from "../services/workoutService";
 import { useAccount } from "../state/AccountContext";
 
@@ -35,12 +35,6 @@ export function WorkoutsScreen() {
   };
 
   useEffect(() => { void load(); }, []);
-  useEffect(() => {
-    if (!detailExercise) return;
-    const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") setDetailExercise(null); };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [detailExercise]);
 
   const workout = useMemo(() => programs.find((item) => item.id === selectedId) ?? programs[0] ?? null, [programs, selectedId]);
 
@@ -63,19 +57,21 @@ export function WorkoutsScreen() {
       <div className="student-exercise-grid">
         {workout.workout_exercises.map((exercise, index) => (
           <article key={exercise.id} className="student-exercise-card">
-            <button
-              className="student-exercise-image"
+            <button type="button" className="student-exercise-image"
               onClick={() => setDetailExercise(exercise)}
-              aria-label={`Ver demonstração de ${exercise.name}`}
+              aria-label={`Ver GIF e aprender a fazer ${exercise.name}`}
               aria-haspopup="dialog"
             >
-              <ExerciseMedia exercise={exercise} compact />
+              <WorkoutDemonstration exercise={exercise} compact />
               <span className="student-exercise-number">{index + 1}</span>
-              <span className="student-exercise-tap">Toque para ver como fazer</span>
+              <span className="student-exercise-tap">▶</span>
             </button>
             <div className="student-exercise-copy">
               <h3>{exercise.name}</h3>
-              <p><b>{exercise.sets} séries</b> de {exercise.reps_min}{exercise.reps_max !== exercise.reps_min ? ` a ${exercise.reps_max}` : ""} repetições</p>
+              <p className="student-exercise-muscle">{exercise.muscle_group}</p>
+              <p><b>{exercise.sets} × {exercise.reps_min}{exercise.reps_max !== exercise.reps_min ? `–${exercise.reps_max}` : ""}</b></p>
+              <p>Descanso: {exercise.rest_seconds}s</p>
+              <p>Carga: {exercise.suggested_load_kg == null ? "a definir" : `${exercise.suggested_load_kg} kg`}</p>
             </div>
           </article>
         ))}
@@ -85,36 +81,23 @@ export function WorkoutsScreen() {
     </>}
 
     {detailExercise && (
-      <div className="exercise-detail-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setDetailExercise(null); }}>
-        <section className="exercise-detail-modal" role="dialog" aria-modal="true" aria-label={`Como fazer ${detailExercise.name}`}>
-          <div className="exercise-detail-head">
-            <div><small>COMO FAZER</small><h2>{detailExercise.name}</h2></div>
-            <button className="icon-button" onClick={() => setDetailExercise(null)} aria-label="Fechar demonstração"><X /></button>
-          </div>
-
-          <ExerciseDemo exercise={detailExercise} />
-
-          <div className="exercise-detail-prescription">
-            <div><Dumbbell/><span><small>Séries</small><b>{detailExercise.sets}</b></span></div>
-            <div><CheckCircle2/><span><small>Repetições</small><b>{detailExercise.reps_min}{detailExercise.reps_max !== detailExercise.reps_min ? `–${detailExercise.reps_max}` : ""}</b></span></div>
-            <div><Clock3/><span><small>Descanso</small><b>{detailExercise.rest_seconds}s</b></span></div>
-            <div><Weight/><span><small>Carga</small><b>{detailExercise.suggested_load_kg == null ? "Livre" : `${detailExercise.suggested_load_kg} kg`}</b></span></div>
-          </div>
-
-          <div className="exercise-detail-section">
-            <h3>Onde trabalha no corpo</h3>
-            <MuscleBodyMap exercise={detailExercise} />
-          </div>
-
-          <div className="exercise-detail-section">
-            <h3>Descrição</h3>
-            <p>{detailExercise.notes || `Execute ${detailExercise.name} com movimento controlado e seguindo a orientação do professor.`}</p>
-          </div>
-
-          <button className="primary-button" onClick={() => setDetailExercise(null)}>Entendi</button>
-        </section>
-      </div>
+      <ExerciseGuideDialog
+        title={detailExercise.name}
+        subtitle={detailExercise.muscle_group || "Exercício de musculação"}
+        media={<WorkoutDemonstration exercise={detailExercise}/>}
+        stats={[
+          { label: "Séries", value: String(detailExercise.sets) },
+          { label: "Repetições", value: `${detailExercise.reps_min}${detailExercise.reps_max === detailExercise.reps_min ? "" : `–${detailExercise.reps_max}`}` },
+          { label: "Descanso", value: `${detailExercise.rest_seconds}s` },
+          { label: "Carga", value: detailExercise.suggested_load_kg == null ? "A definir" : `${detailExercise.suggested_load_kg} kg` },
+        ]}
+        instruction={detailExercise.notes || `Execute ${detailExercise.name} com movimento controlado e orientação do instrutor.`}
+        credit={detailExercise.media_type !== "gif" && detailExercise.media_type !== "video" && curatedWorkoutGif(detailExercise.name)
+          ? "GIF demonstrativo: ExerciseGymGifsDB" : detailExercise.media_attribution}
+        onClose={() => setDetailExercise(null)}
+      />
     )}
+
   </div></AppShell>;
 }
 
