@@ -1,17 +1,19 @@
-.student-workouts-page { display: flex; flex-direction: column; gap: 14px; }
-.student-exercise-grid { display: grid; gap: 14px; }
-.student-exercise-card { overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: var(--card); box-shadow: var(--shadow); }
-.student-exercise-image { position: relative; display: block; width: 100%; padding: 0; border: 0; background: #071f33; cursor: pointer; text-align: left; }
-.student-exercise-image .exercise-media { min-height: 230px; border-radius: 0; }
-.student-exercise-image .exercise-media img,
-.student-exercise-image .exercise-media video { min-height: 230px; max-height: 310px; object-fit: contain; }
-.student-exercise-number { position: absolute; left: 12px; top: 12px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--yellow); color: #071f33; font-weight: 900; box-shadow: 0 3px 10px rgba(0,0,0,.18); }
-.student-exercise-tap { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 24px); padding: 7px 11px; border-radius: 999px; background: rgba(7,31,51,.86); color: #fff; font-size: .7rem; font-weight: 800; }
-.student-exercise-copy { padding: 14px 15px 16px; }
-.student-exercise-copy h3, .student-exercise-copy p { margin: 0; }
-.student-exercise-copy h3 { font-size: 1rem; line-height: 1.25; color: var(--text); }
-.student-exercise-copy p { margin-top: 6px; color: var(--muted); font-size: .84rem; }
-.student-exercise-copy p b { color: var(--green); }
+.student-workouts-page { display:flex;flex-direction:column;gap:12px; }
+.student-exercise-grid { display:grid;gap:8px; }
+.student-exercise-card { display:grid;grid-template-columns:clamp(90px,26vw,118px) minmax(0,1fr);align-items:stretch;overflow:hidden;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow);min-width:0; }
+.student-exercise-image { position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:113px;padding:4px;border:0;border-right:1px solid var(--border);background:#f3f5f7;cursor:zoom-in;overflow:hidden; }
+.student-exercise-image .exercise-media,.student-exercise-image .exercise-demo-frame { width:100%;height:100%;min-height:0;max-height:124px;border-radius:0;background:#f3f5f7; }
+.student-exercise-image .exercise-media img,.student-exercise-image .exercise-media video,.student-exercise-image .exercise-demo-frame img,.student-exercise-image .workout-illustrated-gif { width:100%;height:100%;min-height:0;max-height:124px;object-fit:contain; }
+.student-exercise-number { position:absolute;left:5px;top:5px;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#073a51;color:#fff;font-size:.65rem;font-weight:900;box-shadow:0 3px 10px rgba(0,0,0,.18); }
+.student-exercise-tap { position:absolute;right:5px;bottom:5px;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#073a51;color:#fff;font-size:.72rem;pointer-events:none; }
+.student-exercise-copy { padding:9px 10px;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:3px; }
+.student-exercise-copy h3,.student-exercise-copy p { margin:0; }
+.student-exercise-copy h3 { font-size:clamp(.78rem,3.5vw,.94rem);line-height:1.2;color:var(--text); }
+.student-exercise-copy p { color:var(--muted);font-size:.72rem;line-height:1.2; }
+.student-exercise-copy p b { color:var(--green);font-size:.8rem; }
+.student-exercise-copy .student-exercise-muscle { color:var(--green);font-size:.68rem;font-weight:800; }
+.student-exercise-image:focus-visible {outline:3px solid var(--green);outline-offset:-3px}
+@media(max-width:360px){.student-exercise-card{grid-template-columns:80px minmax(0,1fr)}.student-exercise-copy{padding:6px}}
 
 .exercise-detail-backdrop { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: flex-end; justify-content: center; padding: 16px 12px 0; background: rgba(3,18,31,.72); backdrop-filter: blur(5px); }
 .exercise-detail-modal { width: min(100%, 460px); max-height: 92dvh; overflow-y: auto; border-radius: 24px 24px 0 0; background: var(--surface); color: var(--text); padding: 16px; box-shadow: 0 -12px 50px rgba(0,0,0,.25); }
@@ -51,7 +53,7 @@
 @media (max-width: 420px) {
   .student-exercise-image .exercise-media,
   .student-exercise-image .exercise-media img,
-  .student-exercise-image .exercise-media video { min-height: 215px; }
+  .student-exercise-image .exercise-media video { min-height: 0; }
   .exercise-detail-modal { padding: 14px; }
   .exercise-demo-frame, .exercise-demo-frame img { min-height: 230px; }
 }
