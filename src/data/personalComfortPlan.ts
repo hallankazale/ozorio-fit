@@ -61,7 +61,7 @@ export const personalComfortWorkouts: PersonalWorkout[] = [
       makeExercise("c-flexora", "Cadeira flexora sentada", "Posterior de coxa", "Máquina", "4 × 12–15", 75, "hamstrings/lever-seated-leg-curl.gif", "Ajuste o encosto e o apoio acima dos tornozelos.", "Mesa flexora deitado"),
       makeExercise("c-flexora-pe", "Flexora unilateral em pé", "Posterior de coxa", "Máquina", "3 × 12 por perna", 75, "hamstrings/standing-single-leg-curl.gif", "Apoie o tronco e evite arquear a lombar.", "Agachamento sumô"),
       makeExercise("c-legpress", "Leg press horizontal unilateral", "Quadríceps e glúteos", "Máquina", "3 × 12 por perna", 90, "glutes/lever-horizontal-one-leg-press.gif", "Use carga leve para começar e mantenha o quadril apoiado.", "Leg press 45° adicional"),
-      makeExercise("c-abdutora", "Abdução de quadril na máquina", "Glúteo médio", "Máquina", "3 × 15–20", 60, "glutes/lever-seated-hip-internal-rotation.gif", "O GIF desta variação não corresponde exatamente à máquina abdutora; peça uma demonstração antes de executar.", "Abdução 4 × 40"),
+      makeExercise("c-abdutora", "Abdução de quadril na máquina", "Glúteo médio", "Máquina", "3 × 15–20", 60, "abductors/lever-seated-hip-abduction.gif", "Mantenha o tronco apoiado; abra as pernas até uma amplitude confortável.", "Abdução 4 × 40"),
       makeExercise("c-lombar", "Extensão lombar sentada", "Lombar", "Máquina", "3 × 10–12", 75, "spine/lever-back-extension.gif", "Use a máquina sentada; não faça em banco romano.", "Hiperextensão no banco romano"),
       makeExercise("c-caminhada", "Caminhada na esteira", "Aeróbico", "Esteira", "10–20 minutos", 0, "cardio/walking-on-incline-treadmill.gif", "Termine em intensidade leve a moderada."),
     ],
