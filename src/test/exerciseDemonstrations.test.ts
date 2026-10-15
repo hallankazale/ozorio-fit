@@ -39,7 +39,7 @@ describe("GIFs anatômicos padronizados", () => {
     const uniqueNames = new Set<string>();
     let total = 0;
     for (const group of anatomicalGifAliases) {
-      expect(group.file).toMatch(/^[a-z-]+\\/[a-z0-9-]+\\.gif$/);
+      expect(group.file).toMatch(/^[a-z-]+\/[a-z0-9-]+\.gif$/);
       for (const name of group.names) {
         total++;
         expect(uniqueNames.has(name), name).toBe(false);
