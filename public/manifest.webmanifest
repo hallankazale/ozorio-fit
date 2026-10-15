@@ -6,5 +6,12 @@
   "background_color": "#F7F8FA",
   "theme_color": "#061F33",
   "orientation": "portrait-primary",
-  "icons": []
+  "icons": [
+    {
+      "src": "./icon-premium.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }

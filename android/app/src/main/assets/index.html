@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://cdn.jsdelivr.net https://raw.githubusercontent.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'none';"/>
+  <meta name="theme-color" content="#061f33"/>
+  <title>Ozorio Fit · Minha ficha</title>
+  <style>
+    :root{--navy:#061f33;--navy2:#0b344a;--green:#04885d;--gold:#d3ad58;--gray:#647280;--paper:#f4f6f8;--outline:#dae0e6}
+    *{box-sizing:border-box}html{font-family:system-ui,-apple-system,Roboto,sans-serif;background:var(--paper);color:var(--navy)}
+    body{margin:0;min-width:300px}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #d3ad58;outline-offset:2px}
+    header{position:sticky;z-index:10;top:0;background:var(--navy);padding:15px 17px 17px;color:#fff;display:flex;align-items:center;gap:12px;box-shadow:0 8px 25px #02182b33}
+    .logo{width:42px;height:42px;background:radial-gradient(circle at 30% 15%,#0b6b83,#062236 65%);border:2px solid var(--gold);border-radius:14px;display:grid;place-items:center;font-size:22px;color:#ecd7a6;box-shadow:0 0 0 3px #ffffff08}
+    header strong{display:block;font-weight:900;letter-spacing:.02em;font-size:1.15rem}header small{display:block;color:#b5cbd7;font-size:.72rem;margin-top:2px}
+    .premium{margin-left:auto;color:var(--gold);font-weight:800;font-size:.68rem;letter-spacing:.08em}
+    main{padding:16px 13px 90px;max-width:720px;margin:0 auto}
+    .lead{background:linear-gradient(130deg,#07253d,#0b4a51);border-radius:18px;padding:17px;color:#fff;box-shadow:0 10px 22px #092d4530;position:relative;overflow:hidden}
+    .lead:after{content:"";height:105px;width:105px;border:1px solid #d3ad5855;border-radius:50%;position:absolute;right:-40px;top:-20px}
+    .eyebrow{font-size:.66rem;color:#e8c777;letter-spacing:.08em;font-weight:900}.lead h1{font-size:1.4rem;margin:6px 0 5px}.lead p{margin:0;color:#c1dde0;line-height:1.35;font-size:.78rem}
+    .tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:17px 0}
+    .tabs button{background:#fff;border:1px solid var(--outline);padding:12px 0;border-radius:11px;color:var(--navy);font-weight:800;font-size:.85rem}
+    .tabs button[aria-selected=true]{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:inset 0 -3px var(--gold)}
+    .summary{display:flex;align-items:center;gap:10px;justify-content:space-between;margin:3px 1px 10px}
+    .summary h2{font-size:1.03rem;margin:0}.summary p{margin:3px 0 0;font-size:.71rem;color:var(--gray);line-height:1.3}
+    #count{font-weight:900;font-size:.72rem;white-space:nowrap;color:var(--green)}
+    .progress{background:#dce6e6;height:6px;border-radius:5px;overflow:hidden;margin-bottom:13px}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#00a877,#0b6070);transition:width .2s}
+    .cards{display:grid;gap:9px}.card{display:grid;grid-template-columns:102px minmax(0,1fr);min-height:125px;border:1px solid var(--outline);border-radius:15px;overflow:hidden;background:#fff;box-shadow:0 4px 11px #071c2e0d}
+    .card.done{border-color:var(--green)}.picture{position:relative;background:#eef2f4;border:none;border-right:1px solid var(--outline);padding:0;min-height:125px;display:grid;place-items:center;overflow:hidden}
+    .picture img{height:118px;width:100%;object-fit:contain}.counter{position:absolute;left:5px;top:5px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:var(--navy2);color:#fff;font-size:.7rem;font-weight:900}.play{position:absolute;bottom:5px;right:5px;height:23px;width:23px;display:grid;place-items:center;background:#074457;color:#fff;border-radius:50%;font-size:.6rem}
+    .fallback{padding:7px;font-size:.66rem;color:var(--gray);text-align:center}.content{padding:10px 10px 8px;display:grid;align-content:center;gap:3px;min-width:0}
+    .content h3{font-size:.85rem;line-height:1.2;margin:0;color:var(--navy)}.content p{margin:0;font-size:.7rem;color:#78838b}.content .group{font-size:.7rem;color:var(--green);font-weight:800}
+    .content .reps{font-size:.87rem;font-weight:900;color:var(--green)}.done-btn{justify-self:start;margin-top:3px;background:#f0faf6;border:1px solid #b8e2ce;border-radius:8px;color:#08744c;padding:4px 8px;font-size:.65rem;font-weight:750}
+    .done-btn[aria-pressed=true]{background:#08744c;color:#fff}.notice{margin:17px 0 0;border-left:3px solid var(--gold);padding:9px 10px;background:#fffcf0;color:#665b45;font-size:.72rem;line-height:1.5;border-radius:0 9px 9px 0}
+    .error{padding:20px;background:#fff;border-radius:14px;color:#7b2534}
+    .bottom{position:fixed;bottom:0;left:0;right:0;height:64px;background:var(--navy);display:flex;align-items:center;justify-content:center;color:#b6d5da;font-size:.78rem;z-index:8;padding-bottom:env(safe-area-inset-bottom,0)}
+    .bottom strong{color:#e7c777}.overlay{position:fixed;inset:0;background:#021829ce;display:flex;align-items:center;justify-content:center;padding:12px;z-index:20;backdrop-filter:blur(3px)}
+    .dialog{width:100%;max-width:520px;max-height:95dvh;overflow:auto;border-radius:20px;background:var(--paper);padding:15px;box-shadow:0 23px 70px #0005}
+    .dialog-head{display:flex;gap:10px;align-items:start;justify-content:space-between}.dialog-head small{font-weight:900;color:#078454;letter-spacing:.04em;font-size:.68rem}
+    .dialog-head h2{font-size:1.08rem;line-height:1.2;margin:5px 0 3px}.dialog-head p{margin:0;font-size:.8rem;color:var(--gray)}.close{width:42px;height:42px;background:#fff;border:1px solid var(--outline);border-radius:50%;font-size:1.3rem;flex:none;color:var(--navy)}
+    .hero{margin-top:12px;height:min(32dvh,270px);min-height:170px;display:grid;place-items:center;overflow:hidden;border-radius:14px;background:#edf1f4}.hero img{height:100%;width:100%;object-fit:contain}
+    .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}.stat{background:#fff;border:1px solid var(--outline);border-radius:12px;padding:9px}
+    .stat small{display:block;color:var(--gray);font-size:.72rem}.stat strong{display:block;font-size:.95rem;margin-top:3px;overflow-wrap:anywhere}
+    .instructions{font-size:.8rem;line-height:1.45;margin:15px 0 8px}.instructions strong{font-size:.9rem}.instructions p{margin:5px 0;color:var(--gray)}
+    .source{color:#7b8791;font-size:.65rem}.back{margin-top:12px;width:100%;border:0;border-radius:12px;background:#079568;color:#fff;min-height:45px;font-weight:850}
+    @media(max-width:350px){.card{grid-template-columns:85px minmax(0,1fr)}.content{padding:7px}.picture img{height:103px}.dialog{padding:11px}}
+  </style>
+</head>
+<body>
+<header><span class="logo" aria-hidden="true">✦</span><div><strong>OZORIO FIT</strong><small>Seus treinos originais</small></div><span class="premium">PREMIUM</span></header>
+<main>
+  <section class="lead"><span class="eyebrow">HIPERTROFIA · FICHA ORIGINAL</span><h1>Minha academia, meu treino</h1><p>Os mesmos exercícios das fotos, agora com GIFs anatômicos. Toque na imagem para aprender o movimento.</p></section>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Selecionar ficha"></nav>
+  <div class="summary"><div><h2 id="workout-title">Treino A</h2><p id="workout-subtitle"></p></div><span id="count"></span></div>
+  <div class="progress" role="progressbar" aria-label="Treino concluído" id="progress" aria-valuemin="0"><span id="bar"></span></div>
+  <div class="cards" id="cards"><p>Carregando seus exercícios...</p></div>
+  <p class="notice" id="notice">Os GIFs exigem internet. Os exercícios e o progresso ficam no aparelho.</p>
+</main>
+<div class="bottom"><strong>◆</strong>&nbsp; Ozorio Fit &nbsp; · &nbsp; Ficha A–E</div>
+<div id="dialog-root"></div>
+<script>
+(() => {
+  "use strict";
+  const byId = id => document.getElementById(id);
+  const state = { data: null, code: "A", selected: null };
+  const today = () => { const n = new Date(); return [n.getFullYear(), String(n.getMonth()+1).padStart(2,"0"),String(n.getDate()).padStart(2,"0")].join("-"); };
+  const storage = () => "ozorio-fit:original:"+today();
+  let progress = {};
+  try { progress=JSON.parse(localStorage.getItem(storage())||"{}")||{}; } catch { progress={}; }
+  const el = (tag, cls, text) => { const node=document.createElement(tag); if(cls) node.className=cls; if(text!==undefined) node.textContent=text; return node; };
+  function save(){ try { localStorage.setItem(storage(),JSON.stringify(progress)); } catch{} }
+  function workout(){return state.data.workouts.find(w=>w.code===state.code)||state.data.workouts[0];}
+  function img(ex, css){
+    const wrapper = el("div",css);
+    const visual = el("img");
+    visual.alt="GIF anatômico: "+ex.name; visual.src=ex.gifUrl; visual.loading="lazy";
+    visual.onerror=()=>{wrapper.replaceChildren(el("div","fallback","GIF indisponível. Confira a internet."));};
+    wrapper.append(visual); return wrapper;
+  }
+  function render(){
+    const w=workout(); const tabs=byId("tabs");tabs.replaceChildren();
+    for(const item of state.data.workouts){
+      const b=el("button","",item.code); b.type="button";b.setAttribute("role","tab");
+      b.setAttribute("aria-selected",String(state.code===item.code));
+      b.onclick=()=>{state.code=item.code;render();};
+      tabs.append(b);
+    }
+    byId("workout-title").textContent="Treino "+w.code+" · "+w.title;
+    byId("workout-subtitle").textContent=w.focus;
+    const done=w.exercises.filter(x=>progress[x.id]).length;
+    byId("count").textContent=done+"/"+w.exercises.length+" feitos";
+    byId("progress").setAttribute("aria-valuemax",String(w.exercises.length));
+    byId("progress").setAttribute("aria-valuenow",String(done));
+    byId("bar").style.width=100*done/w.exercises.length+"%";
+    const cards=byId("cards");cards.replaceChildren();
+    w.exercises.forEach((x,i)=>{
+      const card=el("article","card"+(progress[x.id]?" done":""));
+      const thumb=el("button","picture");thumb.type="button";
+      thumb.setAttribute("aria-label","Abrir demonstração de "+x.name);
+      thumb.append(img(x,""),el("span","counter",String(i+1)),el("span","play","▶"));
+      thumb.onclick=()=>open(x);
+      const info=el("div","content");
+      info.append(el("h3","",x.name),el("p","group",x.muscle),el("p","",x.equipment),
+        el("strong","reps",x.prescription),el("p","","Descanso: não informado · Carga: a definir"));
+      const doneButton=el("button","done-btn",progress[x.id]?"✓ Concluído":"✓ Marcar feito");
+      doneButton.type="button";doneButton.setAttribute("aria-pressed",String(!!progress[x.id]));
+      doneButton.onclick=()=>{progress[x.id]=!progress[x.id];save();render();};
+      info.append(doneButton);card.append(thumb,info);cards.append(card);
+    });
+    byId("notice").textContent=state.data.notice+" Os GIFs precisam de internet, mas a ficha e marcações funcionam sem ela.";
+  }
+  function stat(label,value){const b=el("div","stat");b.append(el("small","",label),el("strong","",value));return b;}
+  function readPrescription(text){const m=text.match(/^(\\d+)\\s*[×x]\\s*(.+)$/);return m?{series:m[1],reps:m[2]}:{series:"—",reps:text};}
+  function close(){state.selected=null;byId("dialog-root").replaceChildren();document.body.style.overflow="";}
+  window.ozorioBack=()=>{if(state.selected)close();else if(state.code!=="A"){state.code="A";render();}else return false;return true;};
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&state.selected)close();});
+  function open(x){
+    state.selected=x;document.body.style.overflow="hidden";
+    const overlay=el("div","overlay");overlay.onclick=e=>{if(e.target===overlay)close();};
+    const modal=el("section","dialog");modal.setAttribute("role","dialog");modal.setAttribute("aria-modal","true");
+    const heading=el("div","dialog-head");const title=el("div");
+    title.append(el("small","","DEMONSTRAÇÃO DO EXERCÍCIO"),el("h2","",x.name),el("p","",x.muscle));
+    const closeBtn=el("button","close","×");closeBtn.type="button";closeBtn.setAttribute("aria-label","Fechar");
+    closeBtn.onclick=close;heading.append(title,closeBtn);
+    const hero=img(x,"hero");const stats=el("div","stats");const p=readPrescription(x.prescription);
+    stats.append(stat("Séries",p.series),stat("Repetições / tempo",p.reps),stat("Descanso","Não informado"),stat("Carga","A definir"));
+    const how=el("div","instructions");how.append(el("strong","","Como fazer"),el("p","",x.how));
+    if(x.observation)how.append(el("p","", "⚠ "+x.observation));
+    const source=el("small","source","GIFs anatômicos externos de repositórios públicos do GitHub");
+    const back=el("button","back","Voltar ao treino");back.onclick=close;back.type="button";
+    modal.append(heading,hero,stats,how,source,back);overlay.append(modal);
+    byId("dialog-root").replaceChildren(overlay);closeBtn.focus();
+  }
+  fetch("./workouts.json").then(r=>{if(!r.ok)throw Error("Não foi possível carregar a ficha");return r.json();})
+    .then(data=>{if(!Array.isArray(data.workouts)||data.workouts.length!==5)throw Error("Ficha inválida");state.data=data;render();})
+    .catch(e=>{byId("cards").replaceChildren(el("p","error","Erro ao carregar a ficha original: "+e.message));});
+})();
+</script>
+</body>
+</html>

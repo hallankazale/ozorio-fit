@@ -1,0 +1,405 @@
+{
+  "version": "1.0.0",
+  "source": "Transcrição das 12 capturas da ficha de hipertrofia original enviadas pelo usuário",
+  "notice": "Séries, repetições e tempos foram mantidos conforme as fotos. O descanso não estava informado; confirme com o instrutor. GIFs externos exigem internet.",
+  "workouts": [
+    {
+      "code": "A",
+      "title": "Pernas e abdômen",
+      "focus": "Ficha original fotografada · quadríceps, adutores, panturrilha e aeróbico",
+      "exercises": [
+        {
+          "id": "a1",
+          "name": "Leg 180",
+          "muscle": "Pernas e glúteos",
+          "equipment": "Máquina horizontal",
+          "prescription": "3 × 10–12",
+          "restSeconds": null,
+          "gifUrl": "https://raw.githubusercontent.com/klaudiotucson/banco-de-exercicios-gif/f1805e75b207116f5fe8226842e2d86b1652b73b/Leg%20press%20horizontal%20(1).gif",
+          "how": "Apoie totalmente as costas; empurre sem travar os joelhos.",
+          "observation": ""
+        },
+        {
+          "id": "a2",
+          "name": "Agachamento inclinado",
+          "muscle": "Quadríceps e glúteos",
+          "equipment": "Máquina hack",
+          "prescription": "3 × 12–15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/glutes/sled-hack-squat.gif",
+          "how": "Mantenha os calcanhares na plataforma e desça com controle.",
+          "observation": ""
+        },
+        {
+          "id": "a3",
+          "name": "Extensão pernas",
+          "muscle": "Quadríceps",
+          "equipment": "Cadeira extensora",
+          "prescription": "3 × 12–15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/quads/lever-leg-extension.gif",
+          "how": "Ajuste o aparelho à altura dos joelhos; estenda sem dar trancos.",
+          "observation": ""
+        },
+        {
+          "id": "a4",
+          "name": "Adução de perna",
+          "muscle": "Adutores",
+          "equipment": "Cadeira adutora",
+          "prescription": "3 × 10–12",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/adductors/lever-seated-hip-adduction.gif",
+          "how": "Feche as pernas até o limite confortável, sem forçar a virilha.",
+          "observation": ""
+        },
+        {
+          "id": "a5",
+          "name": "Flexão panturrilhas em pé",
+          "muscle": "Panturrilhas",
+          "equipment": "Solo",
+          "prescription": "3 × 15–20",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/calves/bodyweight-standing-calf-raise.gif",
+          "how": "Suba os calcanhares, faça uma pausa e desça lentamente.",
+          "observation": ""
+        },
+        {
+          "id": "a6",
+          "name": "Abdominal infra alternado",
+          "muscle": "Abdômen",
+          "equipment": "Solo",
+          "prescription": "10–20 minutos",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/abs/air-bike.gif",
+          "how": "Alterne as pernas e mantenha a lombar apoiada.",
+          "observation": "A ficha original indica minutos, não repetições. Confirme a prescrição com seu professor."
+        },
+        {
+          "id": "a7",
+          "name": "Escada",
+          "muscle": "Aeróbico",
+          "equipment": "Escada ergométrica",
+          "prescription": "15 minutos · nível 4",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/cardio/walking-on-stepmill.gif",
+          "how": "Suba em ritmo estável; ajuste a intensidade conforme seu condicionamento.",
+          "observation": ""
+        }
+      ]
+    },
+    {
+      "code": "B",
+      "title": "Costas, bíceps e ombros",
+      "focus": "Ficha original fotografada · costas, braços e caminhada",
+      "exercises": [
+        {
+          "id": "b1",
+          "name": "Puxada alta frente",
+          "muscle": "Costas",
+          "equipment": "Máquina",
+          "prescription": "3 × 15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/lats/lever-front-pulldown.gif",
+          "how": "Puxe em direção ao peito, sem jogar o tronco para trás.",
+          "observation": ""
+        },
+        {
+          "id": "b2",
+          "name": "Remada horizontal",
+          "muscle": "Costas",
+          "equipment": "Máquina",
+          "prescription": "3 × 15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/upper-back/lever-seated-row.gif",
+          "how": "Mantenha o tronco estável e aproxime os cotovelos do corpo.",
+          "observation": ""
+        },
+        {
+          "id": "b3",
+          "name": "Puxador articulado",
+          "muscle": "Dorsais",
+          "equipment": "Máquina articulada",
+          "prescription": "3 × 15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/lats/lever-front-pulldown.gif",
+          "how": "Desça as alças de maneira simétrica, sem elevar os ombros.",
+          "observation": ""
+        },
+        {
+          "id": "b4",
+          "name": "Rosca alternada",
+          "muscle": "Bíceps",
+          "equipment": "Halteres",
+          "prescription": "3 × 12–15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/biceps/dumbbell-alternate-biceps-curl.gif",
+          "how": "Alterne os braços sem balançar o corpo.",
+          "observation": ""
+        },
+        {
+          "id": "b5",
+          "name": "Rosca direta",
+          "muscle": "Bíceps",
+          "equipment": "Polia baixa",
+          "prescription": "3 × 12–15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/biceps/cable-curl.gif",
+          "how": "Mantenha os cotovelos próximos ao tronco.",
+          "observation": ""
+        },
+        {
+          "id": "b6",
+          "name": "Desenvolvimento six",
+          "muscle": "Ombros",
+          "equipment": "Máquina",
+          "prescription": "3 × 12–15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/delts/lever-shoulder-press.gif",
+          "how": "Empurre com amplitude confortável, evitando arquear as costas.",
+          "observation": ""
+        },
+        {
+          "id": "b7",
+          "name": "Caminhada",
+          "muscle": "Aeróbico",
+          "equipment": "Esteira elétrica",
+          "prescription": "20–30 minutos · 120–130 bpm",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/cardio/walking-on-incline-treadmill.gif",
+          "how": "Caminhe em ritmo confortável e observe como se sente.",
+          "observation": "A meta de 120–130 bpm está na foto, mas deve ser validada com profissional."
+        }
+      ]
+    },
+    {
+      "code": "C",
+      "title": "Pernas, posterior e lombar",
+      "focus": "Ficha original fotografada · posterior de coxa, glúteos e cardio",
+      "exercises": [
+        {
+          "id": "c1",
+          "name": "Flexão pernas deitado",
+          "muscle": "Posterior de coxa",
+          "equipment": "Máquina",
+          "prescription": "4 × 15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/hamstrings/lever-lying-leg-curl.gif",
+          "how": "Ajuste o rolo próximo aos tornozelos e dobre os joelhos lentamente.",
+          "observation": ""
+        },
+        {
+          "id": "c2",
+          "name": "Agachamento sumô",
+          "muscle": "Pernas e glúteos",
+          "equipment": "Halteres",
+          "prescription": "4 × 15",
+          "restSeconds": null,
+          "gifUrl": "https://raw.githubusercontent.com/klaudiotucson/banco-de-exercicios-gif/f1805e75b207116f5fe8226842e2d86b1652b73b/Agachamento%20sumo%20com%20halteres%20(3).gif",
+          "how": "Mantenha postura neutra e agache na amplitude confortável.",
+          "observation": ""
+        },
+        {
+          "id": "c3",
+          "name": "Leg press 45°",
+          "muscle": "Pernas e glúteos",
+          "equipment": "Máquina",
+          "prescription": "3 × 12–15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/glutes/sled-45-leg-press.gif",
+          "how": "Não arredonde a lombar no fundo do movimento.",
+          "observation": ""
+        },
+        {
+          "id": "c4",
+          "name": "Abdução perna",
+          "muscle": "Glúteos",
+          "equipment": "Máquina abdutora",
+          "prescription": "4 × 40",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/abductors/lever-seated-hip-abduction.gif",
+          "how": "Abra as pernas sem usar impulso; ajuste a carga para controlar o movimento.",
+          "observation": ""
+        },
+        {
+          "id": "c5",
+          "name": "Hiperextensão lombar braços peito",
+          "muscle": "Lombar",
+          "equipment": "Banco romano",
+          "prescription": "3 × 10",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/spine/hyperextension-on-bench.gif",
+          "how": "Mantenha as costas neutras; evite estender além do alinhamento do tronco.",
+          "observation": ""
+        },
+        {
+          "id": "c6",
+          "name": "Caminhada",
+          "muscle": "Aeróbico",
+          "equipment": "Esteira elétrica",
+          "prescription": "10–20 minutos",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/cardio/walking-on-incline-treadmill.gif",
+          "how": "Mantenha respiração e ritmo confortáveis.",
+          "observation": ""
+        }
+      ]
+    },
+    {
+      "code": "D",
+      "title": "Peito, tríceps e ombros",
+      "focus": "Ficha original fotografada · peito, ombros, tríceps e escada",
+      "exercises": [
+        {
+          "id": "d1",
+          "name": "Supino inclinado",
+          "muscle": "Peito superior",
+          "equipment": "Máquina",
+          "prescription": "3 × 12–15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/pectorals/lever-incline-chest-press.gif",
+          "how": "Mantenha as escápulas apoiadas e empurre com controle.",
+          "observation": ""
+        },
+        {
+          "id": "d2",
+          "name": "Peck deck",
+          "muscle": "Peitoral",
+          "equipment": "Máquina",
+          "prescription": "3 × 12–15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/pectorals/lever-seated-fly.gif",
+          "how": "Ajuste a altura do banco e una os braços sem trancos.",
+          "observation": ""
+        },
+        {
+          "id": "d3",
+          "name": "Tríceps corda",
+          "muscle": "Tríceps",
+          "equipment": "Polia",
+          "prescription": "4 × 15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/triceps/cable-pushdown-with-rope-attachment.gif",
+          "how": "Mantenha cotovelos fixos e estenda os braços.",
+          "observation": ""
+        },
+        {
+          "id": "d4",
+          "name": "Tríceps francês",
+          "muscle": "Tríceps",
+          "equipment": "Halter",
+          "prescription": "4 × 15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/triceps/dumbbell-standing-triceps-extension.gif",
+          "how": "Estenda os cotovelos sem arquear a lombar.",
+          "observation": ""
+        },
+        {
+          "id": "d5",
+          "name": "Elevação lateral em pé",
+          "muscle": "Ombros",
+          "equipment": "Halteres",
+          "prescription": "4 × 15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/delts/dumbbell-lateral-raise.gif",
+          "how": "Levante os braços até uma amplitude confortável.",
+          "observation": ""
+        },
+        {
+          "id": "d6",
+          "name": "Elevação frontal",
+          "muscle": "Ombros",
+          "equipment": "Halteres",
+          "prescription": "4 × 15",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/delts/dumbbell-front-raise.gif",
+          "how": "Eleve os halteres à frente sem balançar.",
+          "observation": ""
+        },
+        {
+          "id": "d7",
+          "name": "Escada",
+          "muscle": "Aeróbico",
+          "equipment": "Escada ergométrica",
+          "prescription": "10–20 minutos",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/cardio/walking-on-stepmill.gif",
+          "how": "Ajuste o ritmo segundo a respiração e o condicionamento.",
+          "observation": ""
+        }
+      ]
+    },
+    {
+      "code": "E",
+      "title": "Costas, trapézio, peito e abdômen",
+      "focus": "Ficha original fotografada · dorsais, trapézio, peitoral e core",
+      "exercises": [
+        {
+          "id": "e1",
+          "name": "Pull down",
+          "muscle": "Costas",
+          "equipment": "Polia alta",
+          "prescription": "3 × 12",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/lats/cable-straight-arm-pulldown.gif",
+          "how": "Com cotovelos levemente flexionados, puxe a barra até próximo do quadril.",
+          "observation": ""
+        },
+        {
+          "id": "e2",
+          "name": "Encolhimento de ombros",
+          "muscle": "Trapézio",
+          "equipment": "Halteres",
+          "prescription": "3 × 12",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/traps/dumbbell-shrug.gif",
+          "how": "Eleve os ombros verticalmente; não faça círculos.",
+          "observation": ""
+        },
+        {
+          "id": "e3",
+          "name": "Voador costas",
+          "muscle": "Ombro posterior",
+          "equipment": "Máquina",
+          "prescription": "3 × 12",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/delts/lever-seated-reverse-fly.gif",
+          "how": "Abra os braços com movimento lento e controlado.",
+          "observation": ""
+        },
+        {
+          "id": "e4",
+          "name": "Crucifixo fly",
+          "muscle": "Peito",
+          "equipment": "Halteres · banco inclinado",
+          "prescription": "3 × 12",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/pectorals/dumbbell-incline-fly.gif",
+          "how": "Mantenha cotovelos semiflexionados e abra os braços até seu limite confortável.",
+          "observation": "A ficha menciona banco reto e também 'banco inclinado'; confirme com o professor. GIF demonstra banco inclinado."
+        },
+        {
+          "id": "e5",
+          "name": "Pullover",
+          "muscle": "Peito e dorsais",
+          "equipment": "Banco e halteres",
+          "prescription": "3 × 12",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/pectorals/dumbbell-pullover.gif",
+          "how": "Leve o halter para trás sem forçar o ombro.",
+          "observation": ""
+        },
+        {
+          "id": "e6",
+          "name": "Prancha",
+          "muscle": "Abdômen",
+          "equipment": "Solo",
+          "prescription": "3 × 12",
+          "restSeconds": null,
+          "gifUrl": "https://cdn.jsdelivr.net/gh/JahelCuadrado/ExerciseGymGifsDB@v1.1.0/abs/power-point-plank.gif",
+          "how": "Mantenha corpo alinhado e abdômen ativo.",
+          "observation": "A ficha indica 3 × 12; confirme se a unidade desejada é tempo ou repetições."
+        }
+      ]
+    }
+  ]
+}

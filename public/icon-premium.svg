@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ozorio Fit premium">
+<defs>
+<radialGradient id="bg" cx="38%" cy="17%" r="86%"><stop stop-color="#136681"/><stop offset=".45" stop-color="#093C57"/><stop offset="1" stop-color="#061B31"/></radialGradient>
+<linearGradient id="gold" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#FFF0BA"/><stop offset=".38" stop-color="#D7B261"/><stop offset=".72" stop-color="#A47623"/><stop offset="1" stop-color="#FFE5A2"/></linearGradient>
+<filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="9" flood-opacity=".38"/></filter>
+</defs>
+<rect width="512" height="512" rx="110" fill="url(#bg)"/>
+<path d="M66 70q190-101 378 10M70 436q172 83 370-12" stroke="#48B9DB" stroke-opacity=".35" stroke-width="7" fill="none"/>
+<circle cx="256" cy="236" r="168" fill="#092438" stroke="url(#gold)" stroke-width="14" filter="url(#shadow)"/>
+<circle cx="256" cy="236" r="143" fill="none" stroke="#42A9C3" stroke-width="3" stroke-opacity=".55"/>
+<path d="M256 90l11 25 25 10-25 11-11 25-10-25-25-11 25-10z" fill="url(#gold)"/>
+<g fill="url(#gold)" filter="url(#shadow)">
+<rect x="113" y="206" width="20" height="80" rx="7"/><rect x="139" y="188" width="34" height="116" rx="8"/>
+<rect x="179" y="227" width="154" height="39" rx="10"/>
+<rect x="339" y="188" width="34" height="116" rx="8"/><rect x="380" y="206" width="20" height="80" rx="7"/>
+</g><circle cx="256" cy="247" r="46" fill="#05263C" stroke="#F5D48E" stroke-width="10"/>
+<path d="M256 219a28 28 0 1 0 0 56a28 28 0 1 0 0-56" fill="#0B5870"/>
+<path d="M129 361h254" stroke="#D3A84C" stroke-width="3" opacity=".75"/>
+<text x="256" y="412" font-family="Arial,sans-serif" fill="#FCE5B4" font-weight="900" font-size="36" letter-spacing="6" text-anchor="middle">OZORIO FIT</text>
+</svg>

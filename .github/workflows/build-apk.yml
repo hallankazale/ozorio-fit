@@ -1,0 +1,60 @@
+name: Gerar APK Ozorio Fit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/data/originalWorkouts.json"
+      - "android/**"
+      - ".github/workflows/build-apk.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Instalar Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Instalar plataformas necessárias
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Configurar Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.10.2"
+      - name: Copiar a mesma ficha do site para dentro do APK
+        run: cp src/data/originalWorkouts.json android/app/src/main/assets/workouts.json
+      - name: Compilar APK Android (assinado para testes)
+        run: gradle -p android :app:assembleDebug --no-daemon --stacktrace
+      - name: Validar arquivo APK
+        run: |
+          test -s android/app/build/outputs/apk/debug/app-debug.apk
+          unzip -l android/app/build/outputs/apk/debug/app-debug.apk | grep -q AndroidManifest.xml
+          sha256sum android/app/build/outputs/apk/debug/app-debug.apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk OzorioFit-Treinos-Original-v1.0.0.apk
+      - name: Disponibilizar APK para download
+        uses: actions/upload-artifact@v4
+        with:
+          name: OzorioFit-Treinos-Original-v1.0.0
+          path: OzorioFit-Treinos-Original-v1.0.0.apk
+          retention-days: 90
+      - name: Publicar APK pessoal no GitHub Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v1.0.0-ficha-original >/dev/null 2>&1; then
+            gh release upload v1.0.0-ficha-original OzorioFit-Treinos-Original-v1.0.0.apk --clobber
+          else
+            gh release create v1.0.0-ficha-original OzorioFit-Treinos-Original-v1.0.0.apk \
+              --title "Ozorio Fit · Ficha original A–E · APK Android" \
+              --notes "APK pessoal, assinado com chave de desenvolvimento (debug). Contém os 33 exercícios originais A–E, séries/repetições das fotos, progresso local e interface premium. As fichas ficam no aparelho. GIFs externos exigem internet. Não é uma versão assinada para Google Play." \
+              --prerelease
+          fi
