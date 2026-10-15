@@ -2,7 +2,8 @@ import { CheckCircle2, ChevronRight, Clock3, Dumbbell, Minus, Plus, TimerReset, 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { AppShell } from "../components/AppShell";
-import { ExerciseMedia } from "../components/ExerciseMedia";
+import { ExerciseGuideDialog } from "../components/ExerciseGuideDialog";
+import { WorkoutDemonstration } from "../components/WorkoutDemonstration";
 import {
   completeWorkoutSession,
   fetchOwnWorkoutProgram,
@@ -29,6 +30,7 @@ export function ActiveWorkoutScreen() {
   const [finished, setFinished] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [restLeft, setRestLeft] = useState(0);
+  const [guideOpen, setGuideOpen] = useState(false);
   const startedRef = useRef(false);
 
   useEffect(() => {
@@ -75,6 +77,7 @@ export function ActiveWorkoutScreen() {
     if (!exercise) return;
     setSets(buildSets(exercise));
     setRestLeft(0);
+    setGuideOpen(false);
   }, [exercise?.id]);
 
   const completedSets = useMemo(() => sets.filter((item) => item.done).length, [sets]);
@@ -137,11 +140,35 @@ export function ActiveWorkoutScreen() {
 
   return <AppShell title="Treino em andamento"><div className="page-pad active-workout">
     <div className="workout-progress"><span>Exercício {exerciseIndex + 1} de {program.workout_exercises.length}</span><b><Clock3 size={17} /> {formatDuration(elapsed)}</b><div><i style={{ width: `${Math.min(100, progress)}%` }} /></div></div>
-    <section className="active-hero"><div className="active-exercise-media"><ExerciseMedia exercise={exercise} /></div><div><h1>{exercise.name}</h1><p>Grupo muscular</p><div className="muscle-tags"><span>{exercise.muscle_group || "Geral"}</span></div><div className="active-meta"><span><Dumbbell /><small>Séries x reps</small><b>{exercise.sets} x {exercise.reps_min}{exercise.reps_max !== exercise.reps_min ? `-${exercise.reps_max}` : ""}</b></span><span><Weight /><small>Carga sugerida</small><b>{exercise.suggested_load_kg == null ? "Livre" : `${exercise.suggested_load_kg} kg`}</b></span><span><Clock3 /><small>Descanso</small><b>{exercise.rest_seconds} s</b></span></div>{exercise.notes && <div className="info-strip active-note">{exercise.notes}</div>}</div></section>
+    <section className="active-hero"><div className="active-exercise-media">
+      <button type="button" className="active-anatomical-preview"
+        aria-label={`Ver GIF anatômico e como fazer ${exercise.name}`}
+        aria-haspopup="dialog"
+        onClick={() => setGuideOpen(true)}>
+        <WorkoutDemonstration exercise={exercise} compact/>
+        <span>Toque para ver como fazer</span>
+      </button>
+    </div><div><h1>{exercise.name}</h1><p>Grupo muscular</p><div className="muscle-tags"><span>{exercise.muscle_group || "Geral"}</span></div><div className="active-meta"><span><Dumbbell /><small>Séries x reps</small><b>{exercise.sets} x {exercise.reps_min}{exercise.reps_max !== exercise.reps_min ? `-${exercise.reps_max}` : ""}</b></span><span><Weight /><small>Carga sugerida</small><b>{exercise.suggested_load_kg == null ? "Livre" : `${exercise.suggested_load_kg} kg`}</b></span><span><Clock3 /><small>Descanso</small><b>{exercise.rest_seconds} s</b></span></div>{exercise.notes && <div className="info-strip active-note">{exercise.notes}</div>}</div></section>
     <section className="sets-card"><h2>Suas séries</h2><div className="sets-head"><span>Série</span><span>Carga (kg)</span><span>Repetições</span><span>Status</span></div>{sets.map((row, index) => <div className="set-row" key={index}><button className={`set-number ${row.done ? "done" : ""}`} onClick={() => void toggle(index)}>{index + 1}</button><div className="stepper"><button onClick={() => update(index, "kg", -1)}><Minus /></button><b>{row.kg}</b><button onClick={() => update(index, "kg", 1)}><Plus /></button></div><div className="stepper"><button onClick={() => update(index, "reps", -1)}><Minus /></button><b>{row.reps}</b><button onClick={() => update(index, "reps", 1)}><Plus /></button></div><button className={`set-status ${row.done ? "done" : ""}`} onClick={() => void toggle(index)}>{row.done ? <><CheckCircle2 /> Concluída</> : <><Clock3 /> Pendente</>}</button></div>)}
       <button className="primary-button" onClick={() => void completeExercise()}><CheckCircle2 /> Concluir exercício</button><button className="outline-button" onClick={() => void nextExercise()}>{exerciseIndex === program.workout_exercises.length - 1 ? "Finalizar treino" : "Próximo exercício"} <ChevronRight /></button>
     </section>
     <div className={`rest-timer ${restLeft > 0 ? "is-running" : ""}`}><TimerReset /><strong>{formatTimer(restLeft || exercise.rest_seconds)}</strong><span>{restLeft > 0 ? "Descansando" : "Descanso"}</span></div>
+    {guideOpen && (
+      <ExerciseGuideDialog
+        title={exercise.name}
+        subtitle={exercise.muscle_group || "Exercício de musculação"}
+        media={<WorkoutDemonstration exercise={exercise} />}
+        stats={[
+          { label: "Séries", value: String(exercise.sets) },
+          { label: "Repetições", value: `${exercise.reps_min}${exercise.reps_max === exercise.reps_min ? "" : `–${exercise.reps_max}`}` },
+          { label: "Descanso", value: `${exercise.rest_seconds}s` },
+          { label: "Carga", value: exercise.suggested_load_kg == null ? "A definir" : `${exercise.suggested_load_kg} kg` },
+        ]}
+        instruction={exercise.notes || `Execute ${exercise.name} de forma controlada, com orientação do instrutor.`}
+        credit="GIF anatômico: ExerciseGymGifsDB, quando disponível"
+        onClose={() => setGuideOpen(false)}
+      />
+    )}
     {feedback && <div className="toast">{feedback}</div>}
   </div></AppShell>;
 }

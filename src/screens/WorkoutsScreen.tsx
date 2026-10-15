@@ -92,8 +92,8 @@ export function WorkoutsScreen() {
           { label: "Carga", value: detailExercise.suggested_load_kg == null ? "A definir" : `${detailExercise.suggested_load_kg} kg` },
         ]}
         instruction={detailExercise.notes || `Execute ${detailExercise.name} com movimento controlado e orientação do instrutor.`}
-        credit={detailExercise.media_type !== "gif" && detailExercise.media_type !== "video" && curatedWorkoutGif(detailExercise.name)
-          ? "GIF demonstrativo: ExerciseGymGifsDB" : detailExercise.media_attribution}
+        credit={curatedWorkoutGif(detailExercise.name)
+          ? "GIF anatômico: ExerciseGymGifsDB" : "GIF anatômico ainda não cadastrado para esta variação"}
         onClose={() => setDetailExercise(null)}
       />
     )}
