@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { createElement } from "react";
 import { describe, expect, it } from "vitest";
 import { curatedWorkoutGif, photographedWorkoutNames } from "../data/exerciseDemonstrations";
 import { WorkoutDemonstration } from "../components/WorkoutDemonstration";
@@ -30,18 +31,18 @@ describe("GIFs anatômicos padronizados", () => {
   });
 
   it("ignora foto antiga e prefere GIF anatômico do catálogo", () => {
-    render(<WorkoutDemonstration exercise={makeExercise(
+    render(createElement(WorkoutDemonstration, { exercise: makeExercise(
       "Supino inclinado com halteres", "https://example.com/old-photo.jpg", "image",
-    )} />);
+    ) }));
     const image = screen.getByRole("img", { name: /gif anatômico/i });
     expect(image.getAttribute("src")).toContain("dumbbell-incline-bench-press.gif");
     expect(image.getAttribute("src")).not.toContain("old-photo.jpg");
   });
 
   it("não exibe foto ou vídeo se não houver demonstração anatômica equivalente", () => {
-    render(<WorkoutDemonstration exercise={makeExercise(
+    render(createElement(WorkoutDemonstration, { exercise: makeExercise(
       "Exercício inexistente xyz", "https://example.com/old-video.mp4", "video",
-    )} />);
+    ) }));
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
     expect(screen.getByRole("status")).toHaveTextContent("GIF anatômico não disponível");
   });
