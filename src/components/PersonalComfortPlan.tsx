@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { CheckCircle2, Dumbbell, ImageOff, Info, Play, RotateCcw } from "lucide-react";
 import { ExerciseGuideDialog } from "./ExerciseGuideDialog";
+import { readWorkoutPrescription } from "../utils/workoutPrescription";
 import {
   PERSONAL_WORKOUT_DISCLAIMER,
   personalComfortWorkouts,
@@ -128,15 +129,15 @@ export function PersonalComfortPlan({ accountId }: Props) {
     {selectedExercise && (
       <ExerciseGuideDialog
         title={selectedExercise.name}
-        subtitle={`${selectedExercise.equipment} · ${selectedExercise.muscle}`}
+        subtitle={selectedExercise.muscle}
         media={<ExerciseAnimation exercise={selectedExercise} />}
         stats={[
-          { label: "Séries / repetições", value: selectedExercise.prescription },
+          { label: "Séries", value: readWorkoutPrescription(selectedExercise.prescription).sets },
+          { label: "Repetições / tempo", value: readWorkoutPrescription(selectedExercise.prescription).reps },
           { label: "Descanso", value: selectedExercise.restSeconds > 0 ? `${selectedExercise.restSeconds}s` : "—" },
-          { label: "Carga", value: "Ajustar com instrutor" },
-          { label: "Grupo muscular", value: selectedExercise.muscle },
+          { label: "Carga", value: selectedExercise.restSeconds > 0 ? "A definir" : "Não se aplica" },
         ]}
-        instruction={`${selectedExercise.tip}${selectedExercise.replaces ? ` Substitui: ${selectedExercise.replaces}.` : ""}`}
+        instruction={`${selectedExercise.equipment}: ${selectedExercise.tip}${selectedExercise.replaces ? ` Substitui: ${selectedExercise.replaces}.` : ""}`}
         credit="GIF: ExerciseGymGifsDB · reprodução animada"
         onClose={() => setSelectedExercise(null)}
       />
