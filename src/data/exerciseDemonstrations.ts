@@ -1,5 +1,6 @@
 import { personalComfortWorkouts } from "./personalComfortPlan";
 import { anatomicalGifAlias } from "./exerciseNameAliases";
+import { supplementalExerciseGif } from "./supplementalExerciseGifs";
 
 /**
  * Catálogo curado dos movimentos fotografados (A–E) e variações comuns.
@@ -105,6 +106,9 @@ function normalize(value: string): string {
 /** Resolve primeiro pelo nome + equipamento, sem mostrar um aparelho errado. */
 export function curatedWorkoutGif(name: string): string | null {
   const key = normalize(name);
+  // O acervo suplementar tem prioridade apenas para variações específicas.
+  const exactSupplement = supplementalExerciseGif(key);
+  if (exactSupplement) return exactSupplement;
   const direct = anatomicalGifAlias(key) ?? pathsByName[key];
   if (direct) return CDN + direct;
 
