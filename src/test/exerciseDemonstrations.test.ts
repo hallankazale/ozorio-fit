@@ -3,6 +3,7 @@ import { createElement } from "react";
 import { describe, expect, it } from "vitest";
 import { curatedWorkoutGif, photographedWorkoutNames } from "../data/exerciseDemonstrations";
 import { anatomicalGifAliases } from "../data/exerciseNameAliases";
+import { supplementalExerciseGif } from "../data/supplementalExerciseGifs";
 import { WorkoutDemonstration } from "../components/WorkoutDemonstration";
 import type { WorkoutExercise } from "../services/workoutService";
 
@@ -44,7 +45,9 @@ describe("GIFs anatômicos padronizados", () => {
         total++;
         expect(uniqueNames.has(name), name).toBe(false);
         uniqueNames.add(name);
-        expect(curatedWorkoutGif(name), name).toContain(group.file);
+        const supplemental = supplementalExerciseGif(name);
+        if (supplemental) expect(curatedWorkoutGif(name), name).toBe(supplemental);
+        else expect(curatedWorkoutGif(name), name).toContain(group.file);
       }
     }
     expect(total).toBeGreaterThanOrEqual(110);
