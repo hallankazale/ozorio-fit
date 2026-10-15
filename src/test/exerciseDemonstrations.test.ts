@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { createElement } from "react";
 import { describe, expect, it } from "vitest";
 import { curatedWorkoutGif, photographedWorkoutNames } from "../data/exerciseDemonstrations";
+import { anatomicalGifAliases } from "../data/exerciseNameAliases";
 import { WorkoutDemonstration } from "../components/WorkoutDemonstration";
 import type { WorkoutExercise } from "../services/workoutService";
 
@@ -19,6 +20,34 @@ describe("GIFs anatômicos padronizados", () => {
     for (const name of photographedWorkoutNames) {
       expect(curatedWorkoutGif(name), `GIF ausente: ${name}`).toMatch(/\.gif$/);
     }
+  });
+
+  it("corrige exatamente os GIFs ausentes na captura enviada", () => {
+    const screenshotNames = [
+      ["Supino reto com barra", "pectorals/barbell-bench-press.gif"],
+      ["Crossover no cabo", "pectorals/cable-cross-over-variation.gif"],
+      ["Desenvolvimento com halteres", "delts/dumbbell-seated-shoulder-press.gif"],
+      ["Elevação lateral com halteres", "delts/dumbbell-lateral-raise.gif"],
+    ];
+    for (const [name, file] of screenshotNames) {
+      expect(curatedWorkoutGif(name)).toContain(file);
+      expect(curatedWorkoutGif(name.toUpperCase())).toContain(file);
+    }
+  });
+
+  it("possui catálogo fixo e validável para 118 nomes alternativos em português", () => {
+    const uniqueNames = new Set<string>();
+    let total = 0;
+    for (const group of anatomicalGifAliases) {
+      expect(group.file).toMatch(/^[a-z-]+\\/[a-z0-9-]+\\.gif$/);
+      for (const name of group.names) {
+        total++;
+        expect(uniqueNames.has(name), name).toBe(false);
+        uniqueNames.add(name);
+        expect(curatedWorkoutGif(name), name).toContain(group.file);
+      }
+    }
+    expect(total).toBeGreaterThanOrEqual(110);
   });
 
   it("distingue máquina de halteres para não ensinar um movimento errado", () => {
