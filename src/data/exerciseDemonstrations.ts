@@ -132,6 +132,12 @@ export function curatedWorkoutGif(name: string): string | null {
 }
 
 /** Catálogo independente da aplicação; usado nos testes e QA do plano A–E fotografado. */
+export function anatomicalGifCredit(name: string): string {
+  return supplementalExerciseGif(name)
+    ? "GIF: banco-de-exercicios-gif / GitHub"
+    : "GIF: ExerciseGymGifsDB / GitHub";
+}
+
 export const photographedWorkoutNames = [
   "LEG 180", "AGACHAMENTO INCLINADO", "EXTENSÃO PERNAS", "ADUÇÃO DE PERNA",
   "FLEXÃO PANTURRILHAS EM PÉ", "ABDOMINAL INFRA ALTERNADO", "ESCADA",
