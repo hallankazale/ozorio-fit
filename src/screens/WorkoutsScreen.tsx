@@ -7,6 +7,7 @@ import { ExerciseGuideDialog } from "../components/ExerciseGuideDialog";
 import { WorkoutDemonstration } from "../components/WorkoutDemonstration";
 import { anatomicalGifCredit, curatedWorkoutGif } from "../data/exerciseDemonstrations";
 import { PersonalComfortPlan } from "../components/PersonalComfortPlan";
+import { OriginalWorkouts } from "../components/OriginalWorkouts";
 import { listOwnWorkoutPrograms, type WorkoutExercise, type WorkoutProgram } from "../services/workoutService";
 import { useAccount } from "../state/AccountContext";
 
@@ -40,6 +41,11 @@ export function WorkoutsScreen() {
 
   return <AppShell title="Treinos"><div className="page-pad student-workouts-page">
     <section className="hero-card user-summary"><BrandLogo compact/><div className="hero-card__divider"/><div><h2>{account?.profile.full_name || "Aluno"}</h2><span className="status-chip status-chip--success"><CheckCircle2 size={15}/> {account?.profile.status === "active" ? "Ativo" : "Inativo"}</span><p><Clock3 size={15}/> Matrícula #{account?.profile.membership_number ?? "—"}</p></div></section>
+
+    <details className="personal-comfort-details" open>
+      <summary>Minha ficha ORIGINAL A–E · fotos da academia</summary>
+      <OriginalWorkouts accountId={account?.user.id ?? "anon"} />
+    </details>
 
     <details className="personal-comfort-details">
       <summary>Minha ficha adaptada A–E · uso pessoal</summary>
