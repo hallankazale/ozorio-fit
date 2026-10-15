@@ -449,7 +449,162 @@ export const anatomicalGifAliases = [
     "names": [
       "escada ergometrica"
     ]
-  }
+  },
+{
+  "file": "abs/wheel-rollerout.gif",
+  "names": [
+    "ab roller",
+    "roda abdominal"
+  ]
+},
+{
+  "file": "abs/cable-standing-crunch-with-rope-attachment.gif",
+  "names": [
+    "abdominal na polia",
+    "abdominal com corda na polia"
+  ]
+},
+{
+  "file": "abs/reverse-crunch.gif",
+  "names": [
+    "abdominal reverso"
+  ]
+},
+{
+  "file": "glutes/forward-lunge-male.gif",
+  "names": [
+    "afundo"
+  ]
+},
+{
+  "file": "glutes/walking-lunge.gif",
+  "names": [
+    "afundo caminhando",
+    "passada caminhando"
+  ]
+},
+{
+  "file": "glutes/barbell-full-squat.gif",
+  "names": [
+    "agachamento"
+  ]
+},
+{
+  "file": "delts/dumbbell-seated-shoulder-press.gif",
+  "names": [
+    "desenvolvimento de ombros"
+  ]
+},
+{
+  "file": "abs/lying-leg-raise-flat-bench.gif",
+  "names": [
+    "elevacao de pernas"
+  ]
+},
+{
+  "file": "glutes/low-glute-bridge-on-floor.gif",
+  "names": [
+    "elevacao pelvica",
+    "ponte de gluteos"
+  ]
+},
+{
+  "file": "glutes/sled-hack-squat.gif",
+  "names": [
+    "hack squat ou leg press"
+  ]
+},
+{
+  "file": "glutes/sled-45-leg-press.gif",
+  "names": [
+    "leg press"
+  ]
+},
+{
+  "file": "glutes/barbell-romanian-deadlift.gif",
+  "names": [
+    "levantamento terra romeno com barra"
+  ]
+},
+{
+  "file": "calves/bodyweight-standing-calf-raise.gif",
+  "names": [
+    "panturrilha"
+  ]
+},
+{
+  "file": "glutes/barbell-glute-bridge.gif",
+  "names": [
+    "ponte de gluteos com barra"
+  ]
+},
+{
+  "file": "lats/cable-straight-arm-pulldown.gif",
+  "names": [
+    "pulldown"
+  ]
+},
+{
+  "file": "lats/cable-lat-pulldown-full-range-of-motion.gif",
+  "names": [
+    "puxada aberta pela frente"
+  ]
+},
+{
+  "file": "upper-back/lever-seated-row.gif",
+  "names": [
+    "remada"
+  ]
+},
+{
+  "file": "upper-back/dumbbell-one-arm-bent-over-row.gif",
+  "names": [
+    "remada unilateral",
+    "remada unilateral com halter"
+  ]
+},
+{
+  "file": "biceps/dumbbell-biceps-curl.gif",
+  "names": [
+    "rosca biceps"
+  ]
+},
+{
+  "file": "pectorals/barbell-incline-bench-press.gif",
+  "names": [
+    "supino inclinado"
+  ]
+},
+{
+  "file": "abs/alternate-heel-touchers.gif",
+  "names": [
+    "toque alternado nos calcanhares"
+  ]
+},
+{
+  "file": "biceps/dumbbell-hammer-curl.gif",
+  "names": [
+    "rosca martelo alternada"
+  ]
+},
+{
+  "file": "glutes/barbell-romanian-deadlift.gif",
+  "names": [
+    "stiff"
+  ]
+},
+{
+  "file": "delts/cable-standing-rear-delt-row-with-rope.gif",
+  "names": [
+    "face pull no cabo"
+  ]
+},
+{
+  "file": "glutes/barbell-glute-bridge-two-legs-on-bench-male.gif",
+  "names": [
+    "hip thrust com barra"
+  ]
+}
 ] as const;
 
 function normalizedExerciseName(name: string): string {
