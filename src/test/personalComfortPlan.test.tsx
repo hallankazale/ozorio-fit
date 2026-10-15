@@ -24,6 +24,21 @@ describe("Ficha particular confortável A–E", () => {
     expect(c?.exercises[0].gifFile).toBe("hamstrings/lever-seated-leg-curl.gif");
   });
 
+  it("abre o GIF ao tocar na miniatura e fecha pelo botão ou Escape", () => {
+    render(<PersonalComfortPlan accountId="test-demo-gif" />);
+    const preview = screen.getByRole("button", { name: "Ver GIF e aprender a fazer Leg press 45°" });
+    fireEvent.click(preview);
+    const dialog = screen.getByRole("dialog", { name: "Leg press 45°" });
+    expect(dialog).toBeInTheDocument();
+    expect(screen.getByText("Como fazer")).toBeInTheDocument();
+    expect(dialog.querySelector('img')?.getAttribute("src")).toMatch(/\.gif$/);
+    fireEvent.click(screen.getByRole("button", { name: "Fechar demonstração" }));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    fireEvent.click(preview);
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
   it("permite alternar treinos e marcar exercícios sem tocar nas prescrições do professor", () => {
     render(<PersonalComfortPlan accountId="test-personal-plan" />);
     expect(screen.getByText("Pernas e abdômen")).toBeInTheDocument();
@@ -32,6 +47,6 @@ describe("Ficha particular confortável A–E", () => {
     const buttons = screen.getAllByRole("button", { name: "Marcar como feito" });
     fireEvent.click(buttons[0]);
     expect(screen.getByText("1 de 6 feitos")).toBeInTheDocument();
-    expect(screen.getAllByRole("button", { name: "Feito hoje · desfazer" })).toHaveLength(1);
+    expect(screen.getAllByRole("button", { name: "Feito · desfazer" })).toHaveLength(1);
   });
 });
