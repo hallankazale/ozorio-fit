@@ -1,4 +1,5 @@
 import { personalComfortWorkouts } from "./personalComfortPlan";
+import { anatomicalGifAlias } from "./exerciseNameAliases";
 
 /**
  * Catálogo curado dos movimentos fotografados (A–E) e variações comuns.
@@ -104,7 +105,7 @@ function normalize(value: string): string {
 /** Resolve primeiro pelo nome + equipamento, sem mostrar um aparelho errado. */
 export function curatedWorkoutGif(name: string): string | null {
   const key = normalize(name);
-  const direct = pathsByName[key];
+  const direct = anatomicalGifAlias(key) ?? pathsByName[key];
   if (direct) return CDN + direct;
 
   const personal = personalComfortWorkouts.flatMap((workout) => workout.exercises)
