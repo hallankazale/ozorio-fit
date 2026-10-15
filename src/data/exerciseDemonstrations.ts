@@ -1,4 +1,6 @@
 import { personalComfortWorkouts } from "./personalComfortPlan";
+import { anatomicalGifAlias } from "./exerciseNameAliases";
+import { supplementalExerciseGif } from "./supplementalExerciseGifs";
 
 /**
  * Catálogo curado dos movimentos fotografados (A–E) e variações comuns.
@@ -104,7 +106,10 @@ function normalize(value: string): string {
 /** Resolve primeiro pelo nome + equipamento, sem mostrar um aparelho errado. */
 export function curatedWorkoutGif(name: string): string | null {
   const key = normalize(name);
-  const direct = pathsByName[key];
+  // O acervo suplementar tem prioridade apenas para variações específicas.
+  const exactSupplement = supplementalExerciseGif(key);
+  if (exactSupplement) return exactSupplement;
+  const direct = anatomicalGifAlias(key) ?? pathsByName[key];
   if (direct) return CDN + direct;
 
   const personal = personalComfortWorkouts.flatMap((workout) => workout.exercises)
@@ -127,6 +132,12 @@ export function curatedWorkoutGif(name: string): string | null {
 }
 
 /** Catálogo independente da aplicação; usado nos testes e QA do plano A–E fotografado. */
+export function anatomicalGifCredit(name: string): string {
+  return supplementalExerciseGif(name)
+    ? "GIF: banco-de-exercicios-gif / GitHub"
+    : "GIF: ExerciseGymGifsDB / GitHub";
+}
+
 export const photographedWorkoutNames = [
   "LEG 180", "AGACHAMENTO INCLINADO", "EXTENSÃO PERNAS", "ADUÇÃO DE PERNA",
   "FLEXÃO PANTURRILHAS EM PÉ", "ABDOMINAL INFRA ALTERNADO", "ESCADA",

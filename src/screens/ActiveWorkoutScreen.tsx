@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { AppShell } from "../components/AppShell";
 import { ExerciseGuideDialog } from "../components/ExerciseGuideDialog";
 import { WorkoutDemonstration } from "../components/WorkoutDemonstration";
+import { anatomicalGifCredit } from "../data/exerciseDemonstrations";
 import {
   completeWorkoutSession,
   fetchOwnWorkoutProgram,
@@ -165,7 +166,7 @@ export function ActiveWorkoutScreen() {
           { label: "Carga", value: exercise.suggested_load_kg == null ? "A definir" : `${exercise.suggested_load_kg} kg` },
         ]}
         instruction={exercise.notes || `Execute ${exercise.name} de forma controlada, com orientação do instrutor.`}
-        credit="GIF anatômico: ExerciseGymGifsDB, quando disponível"
+        credit={anatomicalGifCredit(exercise.name)}
         onClose={() => setGuideOpen(false)}
       />
     )}

@@ -21,3 +21,12 @@
 .guide-close:focus-visible,.guide-back:focus-visible{outline:3px solid var(--green);outline-offset:2px}
 @media(max-height:650px){.guide-visual{height:clamp(135px,26dvh,210px)}.guide-modal{gap:7px}.guide-stats>div{padding:5px 8px}}
 @media(prefers-reduced-motion:reduce){.guide-backdrop{backdrop-filter:none}}
+
+
+/* Prescrições com duas opções de aparelho: escolha somente no modal ampliado. */
+.anatomical-variant-display{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;overflow:hidden}
+.anatomical-variant-display>.workout-illustrated-gif{display:block;width:100%;height:100%;object-fit:contain;padding-bottom:40px;box-sizing:border-box}
+.anatomical-variant-switch{position:absolute;inset:auto 0 0;z-index:1;display:flex;gap:6px;align-items:center;justify-content:flex-start;overflow-x:auto;padding:7px;background:rgba(7,31,51,.88)}
+.anatomical-variant-switch button{flex:none;min-height:31px;border-radius:8px;border:1px solid rgba(255,255,255,.35);padding:5px 9px;background:transparent;color:#fff;font-size:.71rem;font-weight:750;cursor:pointer;white-space:nowrap}
+.anatomical-variant-switch button.selected{background:#10a06b;border-color:#10a06b;color:#031b17}
+.anatomical-variant-switch button:focus-visible{outline:2px solid #fff;outline-offset:2px}

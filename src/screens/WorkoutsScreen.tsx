@@ -5,7 +5,7 @@ import { AppShell } from "../components/AppShell";
 import { BrandLogo } from "../components/BrandLogo";
 import { ExerciseGuideDialog } from "../components/ExerciseGuideDialog";
 import { WorkoutDemonstration } from "../components/WorkoutDemonstration";
-import { curatedWorkoutGif } from "../data/exerciseDemonstrations";
+import { anatomicalGifCredit, curatedWorkoutGif } from "../data/exerciseDemonstrations";
 import { PersonalComfortPlan } from "../components/PersonalComfortPlan";
 import { listOwnWorkoutPrograms, type WorkoutExercise, type WorkoutProgram } from "../services/workoutService";
 import { useAccount } from "../state/AccountContext";
@@ -93,7 +93,7 @@ export function WorkoutsScreen() {
         ]}
         instruction={detailExercise.notes || `Execute ${detailExercise.name} com movimento controlado e orientação do instrutor.`}
         credit={curatedWorkoutGif(detailExercise.name)
-          ? "GIF anatômico: ExerciseGymGifsDB" : "GIF anatômico ainda não cadastrado para esta variação"}
+          ? anatomicalGifCredit(detailExercise.name) : "GIF anatômico ainda não cadastrado para esta variação"}
         onClose={() => setDetailExercise(null)}
       />
     )}
