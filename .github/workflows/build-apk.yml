@@ -22,8 +22,13 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-      - name: Instalar plataformas necessárias
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Localizar Android SDK do runner e instalar ferramentas
+        run: |
+          echo "ANDROID_HOME=/usr/local/lib/android/sdk" >> "$GITHUB_ENV"
+          SDK_MANAGER=$(find /usr/local/lib/android/sdk/cmdline-tools -type f -name sdkmanager | head -n 1)
+          test -n "$SDK_MANAGER"
+          yes | "$SDK_MANAGER" --licenses >/dev/null || true
+          "$SDK_MANAGER" "platforms;android-35" "build-tools;35.0.0"
       - name: Configurar Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
